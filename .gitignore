@@ -4,3 +4,5 @@
 /*.bin
 /*.map
 /*.s28
+build
+bin

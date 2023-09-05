@@ -46,39 +46,47 @@ RM		=	erase
 #-------------------------------------------------------------------------------
 
 .asm.obj:
-	$(AS) $(ASFLAGS) $<
-	
+	$(AS) $(ASFLAGS) $< -obuild/$@ -Kbuild/$@.lst
+
 .c.obj:
-	$(CC) $(CCFLAGS) $<
+	$(CC) $(CCFLAGS) $< -obuild/$@
 	
 #===============================================================================
 
 
-ASMS	=	boot.asm
+ASMS	=	01_boot.asm
 
 SRCS	=	demo.c w65c816sxb.c stdio.c
+
+OBJ     =   build/demo.obj build/w65c816sxb.obj build/stdio.obj build/01_boot.obj 
 
 OBJS	=	$(ASMS:.asm=.obj) $(SRCS:.c=.obj)
 
 LIBS	=	-LMS -LCS
 
-all:		demo.s28 demo.bin
+all:		demo.bin
 
 clean:
-		$(RM) *.obj
-		$(RM) *.bin
-		$(RM) *.lst
-		$(RM) *.s28
-		$(RM) *.map
-		$(RM) *.sym
-		$(RM) *.tmp
-		$(RM) *.bnk
+		$(RM) *.obj 2> NUL
+		$(RM) *.64k 2> NUL
+		$(RM) *.bin 2> NUL
+		$(RM) *.lst 2> NUL
+		$(RM) *.s28 2> NUL
+		$(RM) *.map 2> NUL
+		$(RM) *.sym 2> NUL
+		$(RM) *.tmp 2> NUL
+		$(RM) *.bnk 2> NUL
+		$(RM) /Q /F build\* 2> NUL		
+		$(RM) /Q /F bin\* 2> NUL		
 
 demo.s28:	$(OBJS)
-	$(LD) -G -HM28 $(LDFLAGS) -O$@ $(OBJS) $(LIBS)
+	$(LD) -G -HM28 $(LDFLAGS) -O$@ $(OBJ) $(LIBS)
 	
 demo.bin:	$(OBJS)
-	$(LD) -G -HZ $(LDFLAGS) -O$@ $(OBJS) $(LIBS)
+	$(LD) -G -HZ $(LDFLAGS) -Obin\$@ $(OBJ) $(LIBS)
+	
+demo.64k:	$(OBJS)
+	$(LD) -G -HB $(LDFLAGS) -O$@ $(OBJ) $(LIBS)
 	
 #===============================================================================
 

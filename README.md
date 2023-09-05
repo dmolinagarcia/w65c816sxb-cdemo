@@ -78,3 +78,15 @@ PIA_
 ### W65C22 VIA
 
 ### W65C51 ACIA
+
+
+
+## Mis notas
+wdc816as -G -LW boot.asm 
+wdc816cc -BS -SOP -PE -MS -DUSING_816 demo.c -Olala.obj
+wdc816cc -BS -SOP -PE -MS -DUSING_816 w65c816sxb.c
+wdc816cc -BS -SOP -PE -MS -DUSING_816 stdio.c
+wdcln -G -HM28 -G -T -C0300 -Odemo.s28 boot.obj demo.obj w65c816sxb.obj stdio.obj -LMS -LCS
+wdcln -G -HZ -G -T -C0300 -Odemo.bin boot.obj demo.obj w65c816sxb.obj stdio.obj -LMS -LCS
+wdcln -G -HB -G -T -C0300 -Odemo.b boot.obj demo.obj w65c816sxb.obj stdio.obj -LMS -LCS
+
