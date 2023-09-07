@@ -83,7 +83,7 @@ PIA_
 
 ## Mis notas
 wdc816as -G -LW boot.asm 
-wdc816cc -BS -SOP -PE -MS -DUSING_816 demo.c -Olala.obj
+wdc816cc -BS -SOP -PE -MS -DUSING_816 demo.c -a demo.asm
 wdc816cc -BS -SOP -PE -MS -DUSING_816 w65c816sxb.c
 wdc816cc -BS -SOP -PE -MS -DUSING_816 stdio.c
 wdcln -G -HM28 -G -T -C0300 -Odemo.s28 boot.obj demo.obj w65c816sxb.obj stdio.obj -LMS -LCS

@@ -56,9 +56,9 @@ RM		=	erase
 
 ASMS	=	01_boot.asm
 
-SRCS	=	demo.c w65c816sxb.c stdio.c
+SRCS	=	90_demo.c 50_w65c816sxb.c 20_stdio.c
 
-OBJ     =   build/demo.obj build/w65c816sxb.obj build/stdio.obj build/01_boot.obj 
+OBJ     =   build/90_demo.obj build/50_w65c816sxb.obj build/20_stdio.obj build/01_boot.obj 
 
 OBJS	=	$(ASMS:.asm=.obj) $(SRCS:.c=.obj)
 

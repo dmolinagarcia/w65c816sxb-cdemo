@@ -59,6 +59,15 @@ STACK		section
 		longa	off
 		longi	off
 RESET:
+		native			; GO into native move
+		REP #%00110000  ; 16 bit ACC and  XY
+		emulate			; Go emulation
+STOP:		
+
+		jmp STOP
+
+
+
 		sei				; Reset flags
 		cld
 		native				; Go native
